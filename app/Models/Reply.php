@@ -6,7 +6,9 @@ use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model
-{
+{   
+    protected $fillable = ['body','question_id', 'user_id'];
+
     // relationships
     public function qustion()
     {
