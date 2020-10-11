@@ -13,6 +13,7 @@ class User {
 
         if (Token.isValid(access_token)) {
             AppStorage.store(user, access_token);
+            window.location = '/forum';
         }
     }
 
@@ -27,10 +28,12 @@ class User {
 
     loggedIn() {
         return this.hasToken();
+   
     }
 
     logOut() {
         AppStorage.clear();
+        window.location = '/forum';
     }
 
     name() {
