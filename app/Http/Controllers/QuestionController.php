@@ -6,6 +6,7 @@ use App\Http\Resources\QuestionResource;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Str;
 
 class QuestionController extends Controller
 {
@@ -51,8 +52,9 @@ class QuestionController extends Controller
     {
         // $question->title = $request->title ...
         // auth()->user()->questions()->create($request->all());
-        Question::create($request->all());
-        return Response('Created', Response::HTTP_CREATED);
+        //$request['slug'] =Str::slug($request->title);
+        $question = auth()->user()->questions()->create($request->all());
+        return Response(new QuestionResource($question), Response::HTTP_CREATED);
     }
 
     /**

@@ -4,7 +4,8 @@ import login from './auth/login';
 import signup from './auth/signup';
 import forum from './components/forum';
 import logout from './auth/logout';
-
+import read from './components/read';
+import create from './components/Create'
 //to install vueRouter as a plugin for vue
 Vue.use(VueRouter);
 
@@ -16,7 +17,7 @@ export default new VueRouter({
 
         },
         {
-            path: '/logout', name: 'forum', component: logout,
+            path: '/logout', name: 'logout', component: logout,
 
         },
         {
@@ -24,7 +25,15 @@ export default new VueRouter({
 
         },
         {
-            path: '/forum', name: 'logout', component: forum,
+            path: '/forum', name: 'forum', component: forum,
+
+        },
+        {
+            path: '/question/:slug', name: 'read', component: read,
+
+        },
+        {
+            path: '/ask', name: 'create', component: create,
 
         },
     ]
