@@ -6,6 +6,8 @@ import forum from './components/forum';
 import logout from './auth/logout';
 import read from './components/read';
 import create from './components/Create'
+import CreateCategory from './components/category/CreateCategory';
+
 //to install vueRouter as a plugin for vue
 Vue.use(VueRouter);
 
@@ -34,6 +36,10 @@ export default new VueRouter({
         },
         {
             path: '/ask', name: 'create', component: create,
+
+        },
+        {
+            path: '/category', name: 'category', component: CreateCategory,
 
         },
     ]

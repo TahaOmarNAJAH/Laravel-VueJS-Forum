@@ -1,5 +1,5 @@
  <template>
-  <v-card elevation="2" outlined>
+  <v-card elevation="2" outlined class="mt-4">
     <v-card-title>
       <div>
         <router-link :to="data.path">
