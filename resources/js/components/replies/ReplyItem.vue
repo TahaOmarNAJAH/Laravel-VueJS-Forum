@@ -16,6 +16,8 @@
                 </div>
                 <span class="grey--text subtitle-2">{{ data.created_at }}</span>
             </div>
+            <v-spacer></v-spacer>
+            <like :content="data"></like>
         </v-card-title>
         <edit-reply v-if="editing" :edited="data"></edit-reply>
         <!-- <v-divider class="mt-1"></v-divider> -->
@@ -26,12 +28,14 @@
 
 <script>
 import EditReply from "./EditReply";
+import Like from "../likes/like";
 
 export default {
     name: "ReplyItem",
     props: ["data", "index"],
     components: {
         EditReply,
+        Like,
     },
     data() {
         return {
@@ -55,17 +59,17 @@ export default {
             EventBus.$emit("deleteReply", this.index);
         },
         editReply() {
-            this.editing = true;
-            beforeEditReplyBody: this.data.reply
+            (this.editing = true), console.log("ddddddddddd" + this.data.reply);
+            this.beforeEditReplyBody = this.data.reply;
         },
         listen() {
             EventBus.$on("cancelEditing", (reply) => {
                 this.editing = false;
                 if (reply !== this.data.reply) {
+                    console.log("ok" + this.beforeEditReplyBody);
                     this.data.reply = this.beforeEditReplyBody;
                     this.beforeEditReplyBody = "";
                 }
-
             });
         },
     },
