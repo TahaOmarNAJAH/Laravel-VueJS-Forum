@@ -4,7 +4,7 @@
       <v-toolbar-title>LOGO</v-toolbar-title>
 
       <v-spacer></v-spacer>
-      <app-notification v-if="loggedIn"></app-notification>
+      <app-notification v-if="loggedIn  "></app-notification>
       <router-link v-for="item in items" :key="item.title" :to="item.to">
         <v-btn text rounded v-if="item.show">{{ item.title }} </v-btn>
       </router-link>

@@ -8,7 +8,7 @@
                 <span class="grey--text">{{ data.user }} said {{ data.created_at }}</span>
             </div>
             <v-spacer></v-spacer>
-            <v-btn>{{ data.replies_count }} Replies</v-btn>
+            <v-btn>{{ replyCount }} Replies</v-btn>
         </v-card-title>
         <v-card-text v-html="body"> </v-card-text>
         <v-card-actions v-if="own">
@@ -32,12 +32,22 @@ export default {
     data() {
         return {
             own: User.own(this.data.user_id),
+            replyCount:this.data.replies_count
         };
     },
     computed: {
         body() {
             return md.parse(this.data.body);
         },
+    },
+    created(){
+        EventBus.$on('newReply',()=>{
+            this.replyCount++;        
+        });
+
+        EventBus.$on('deleteReply',()=>{
+            this.replyCount--
+        });
     },
     methods: {
         deleteQuestion() {
